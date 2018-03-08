@@ -40,6 +40,8 @@ class App extends Component {
    }
    this.addTrack = this.addTrack.bind(this);
    this.removeTrack = this.removeTrack.bind(this);
+   this.updatePlaylistName = this.updatePlaylistName.bind(this);
+   this.savePlaylist = this.savePlaylist.bind(this);
  }
 
   addTrack(track) {
@@ -60,6 +62,15 @@ class App extends Component {
     this.setState({playlistTracks: tracks});
   }
 
+  updatePlaylistName(name) {
+    this.setState({playlistName: name})
+  }
+
+  // Step 63 - I don't understand step 63 at all. Where are these uri values supposed to be coming from?
+  savePlaylist() {
+
+  }
+
   render() {
     return (
       <div>
@@ -68,7 +79,7 @@ class App extends Component {
             <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
-            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
+            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName}/>
           </div>
         </div>
       </div>
