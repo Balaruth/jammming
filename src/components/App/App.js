@@ -1,19 +1,4 @@
-/* Hi Codecademy and congrats on breaking me down. I got as far as Ravenous
-while still feeling like I had a pretty good grasp of what I'm doing, then
-jammming comes along and I just can't do this anymore. A lot of the steps either
-relate to things I did earlier in the course but just can't remember (as the
-skills taught haven't come up again since) or things I'm pretty sure have never
-come up at all. You guys seem to like to refer to documentation a lot, and I
-suppose that is fine and will work for a decent number of people, but I am of
-the opinion that if I could learn it all just from reading the documentation,
-I wouldn't actually need to do a course. Sometimes the documentation is hard to
-understand, especially if you're an actual beginner. I could keep pestering the
-advisors as I have been doing, and I have nothing against the advisor team,
-they're wonderful people and I gave 'em all 5 star feedback, but getting the
-answers from them does not bring me closer to an understanding. Perhaps it's
-just a sign that I'm not intelligent enough to learn programming, or at least
-that my brain isn't wired for it, but ultimately my journey stops here. It was
-fun while it lasted. */
+/* SUBMITTED TOO EARLY, PLEASE IGNORE UNTIL I DO A RESUBMIT */
 
 import React, { Component } from 'react';
 import './App.css';
