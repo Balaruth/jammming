@@ -1,6 +1,6 @@
 /* SUBMITTED TOO EARLY, PLEASE IGNORE UNTIL I DO A RESUBMIT */
 
-let userAccessToken = '';
+let accessToken = '';
 
 const Spotify = {
   getAccessToken() {
@@ -22,42 +22,39 @@ const Spotify = {
   }
 
   search(term) {
+    const accessToken = getAccessToken();
     fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q={term}`, {
       headers: {
-                'Authorization': 'Bearer ' + accessToken
+                Authorization: 'Bearer ' + accessToken
               }
     }).then(response => {
        return response.json();
      }).then(jsonResponse => {
-       if (jsonResponse.tracks) {
-         return jsonResponse.map(track => {
-          return {
-            id: track.id,
-            name: track.name,
-            artist: track.artists[0].name,
-            album: track.album.name,
-            uri: track.uri
-          }
-    });
-   }
-  });
-  }
+       if (!jsonResponse.tracks) {
+         return [];
+       }
+       return jsonResponse.tracks.items.map(track => ({
+         id: track.id,
+         name: track.name,
+         artist: track.artists[0].name,
+         album: track.album.name,
+         uri: track.uri
+       }));
+     });
 
   savePlaylist(playlistName, trackURIs) {
     if (playlistName.isEmpty() || trackURIs.isEmpty()) {
       return;
     }
-      const accessToken = this.userAccessToken;
+      const accessToken = getAccessToken()
       const headers = {Authorization: 'Bearer' + this.accessToken};
       const userID = '';
       fetch('https://api.spotify.com/v1/me', {headers: headers}).then(response => {
         return response.json();
       }).then(jsonResponse => {
-        // yeah I'm stuck now
-      })
-
-    }
-  }
+        this.userID = jsonResponse.id;
+        })
+      }
 };
 
 export default Spotify;

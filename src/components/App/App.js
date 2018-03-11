@@ -74,7 +74,7 @@ class App extends Component {
   savePlaylist() {
     const trackURIs = [];
     const tracks = this.state.playlistTracks;
-    trackURIs.map()
+    trackURIs.map(this.state.playlistTracks.uri)
   }
 
   search(term) {
