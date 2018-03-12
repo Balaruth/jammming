@@ -9,35 +9,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {name: 'Ruby Soho',
-         artist: 'Rancid',
-         album: '...And Out Come The Wolves'},
-
-        {name: 'Airfield',
-         artist: 'Enter Shikari',
-         album: 'The Spark'},
-
-        {name: 'Real World',
-         artist: 'Matchbox Twenty',
-         album: 'Yourself or Someone Like You'}
-       ],
+      searchResults: [],
 
      playlistName: 'Placeholder Playlist',
 
-     playlistTracks: [
-       {name: 'The Blond Beast',
-        artist: 'Marduk',
-        album: 'Frontschwein'},
-
-       {name: 'Hymne VII',
-        artist: 'Ulver',
-        album: 'Nattens Madrigal'},
-
-       {name: 'I Drink Alone',
-        artist: 'The Cumshots',
-        album: 'Just Quit Trying'}
-     ]
+     playlistTracks: []
    }
    this.addTrack = this.addTrack.bind(this);
    this.removeTrack = this.removeTrack.bind(this);

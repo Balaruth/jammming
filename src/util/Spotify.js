@@ -1,4 +1,6 @@
-let accessToken = '';
+let accessToken = '5c15285e244e446aa7f28b97e36499c5';
+const clientId = '4b06acf2f66d4126a0424d4d95d0813b';
+const redirectUri = 'http://localhost:3000/';
 
 const Spotify = {
   getAccessToken() {
@@ -11,16 +13,16 @@ const Spotify = {
       accessToken = accessTokenMatch[1];
       const expiresIn = Number(expiresInMatch[1]);
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
-      window.history.pushState('Access Token', null, '/'); // This clears the parameters, allowing us to grab a new access token when it expires.
+      window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
       const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
       window.location = accessUrl;
     }
-  }
+  },
 
   search(term) {
-    const accessToken = getAccessToken();
+    const accessToken = this.getAccessToken();
     fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q={term}`, {
       headers: {
                 Authorization: 'Bearer ' + accessToken
@@ -39,13 +41,13 @@ const Spotify = {
          uri: track.uri
        }));
      });
-  }
+  },
 
   savePlaylist(playlistName, trackURIs) {
     if (playlistName.isEmpty() || trackURIs.isEmpty()) {
       return;
     }
-      const accessToken = getAccessToken()
+      const accessToken = this.getAccessToken()
       const headers = {Authorization: 'Bearer' + this.accessToken};
       const userID = '';
       fetch('https://api.spotify.com/v1/me', {headers: headers}).then(response => {
