@@ -1,5 +1,3 @@
-/* SUBMITTED TOO EARLY, PLEASE IGNORE UNTIL I DO A RESUBMIT */
-
 import React from 'react';
 import './Playlist.css';
 import TrackList from '../TrackList/TrackList';

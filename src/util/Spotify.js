@@ -1,5 +1,3 @@
-/* SUBMITTED TOO EARLY, PLEASE IGNORE UNTIL I DO A RESUBMIT */
-
 let accessToken = '';
 
 const Spotify = {
@@ -41,6 +39,7 @@ const Spotify = {
          uri: track.uri
        }));
      });
+  }
 
   savePlaylist(playlistName, trackURIs) {
     if (playlistName.isEmpty() || trackURIs.isEmpty()) {
@@ -54,7 +53,33 @@ const Spotify = {
       }).then(jsonResponse => {
         this.userID = jsonResponse.id;
         })
-      }
-};
+
+      fetch(`https://api.spotify.com/v1/users/{user_id}/playlists`, {
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        method: 'POST',
+        contentType: 'application/json',
+        body: JSON.stringify({name: `${playlistName}`})
+      }).then(response => {
+          return response.json();
+      }).then(jsonResponse => {
+        const playlistID = jsonResponse.id;
+      })
+
+      fetch(`https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks`, {
+        headers: {
+          'Authorization': 'Bearer ' + accessToken
+        },
+        method: 'POST',
+        contentType: 'application/json',
+        body: JSON.stringify({name: `${trackURIs}`})
+      }).then(response => {
+          return response.json();
+      }).then(jsonResponse => {
+        const playlistID = jsonResponse.id;
+      })
+  }
+}
 
 export default Spotify;

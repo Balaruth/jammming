@@ -1,5 +1,3 @@
-/* SUBMITTED TOO EARLY, PLEASE IGNORE UNTIL I DO A RESUBMIT */
-
 import React, { Component } from 'react';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
@@ -70,11 +68,10 @@ class App extends Component {
     this.setState({playlistName: name})
   }
 
-  // Step 63 - I don't understand step 63 at all. Where are these uri values supposed to be coming from?
   savePlaylist() {
-    const trackURIs = [];
-    const tracks = this.state.playlistTracks;
-    trackURIs.map(this.state.playlistTracks.uri)
+    Spotify.savePlaylist(playlistName, trackURIs);
+    const playlistName = 'New Playlist';
+    const searchResults = [];
   }
 
   search(term) {
