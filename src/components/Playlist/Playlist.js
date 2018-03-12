@@ -9,11 +9,12 @@ class Playlist extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  handleNameChange(e) {
-    const name = e.target.value;
-    this.props.onNameChange(name);
+  handleNameChange(event) {
+    this.setState({
+      term: event.target.value
+    });
   }
-
+  
   render() {
     return <div className="Playlist">
             <input defaultValue={'New Playlist'} onChange={this.handleNameChange}/>
