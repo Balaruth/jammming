@@ -1,4 +1,4 @@
-const clientID = '4b06acf2f66d4126a0424d4d95d0813b';
+const clientID = // insert ID here
 const redirectURI = 'http://localhost:3000/';
 
 let accessToken, expiresIn;
