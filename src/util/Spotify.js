@@ -23,24 +23,28 @@ const Spotify = {
 
   search(term) {
     const accessToken = this.getAccessToken();
-    fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q={term}`, {
+    fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
                 Authorization: 'Bearer ' + accessToken
               }
     }).then(response => {
        return response.json();
      }).then(jsonResponse => {
-       if (!jsonResponse.tracks) {
+       if (jsonResponse.tracks) {
          return [];
        }
-       return jsonResponse.tracks.items.map(track => ({
+       return jsonResponse.tracks.items.map(track => {
+         return {
          id: track.id,
          name: track.name,
          artist: track.artists[0].name,
          album: track.album.name,
          uri: track.uri
-       }));
+       };
      });
+   } else {
+          return [];
+        });
   },
 
   savePlaylist(playlistName, trackURIs) {
@@ -56,7 +60,7 @@ const Spotify = {
         this.userID = jsonResponse.id;
         })
 
-      fetch(`https://api.spotify.com/v1/users/{user_id}/playlists`, {
+      fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
         headers: {
           'Authorization': 'Bearer ' + accessToken
         },
@@ -69,7 +73,7 @@ const Spotify = {
         const playlistID = jsonResponse.id;
       })
 
-      fetch(`https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks`, {
+      fetch(`https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`, {
         headers: {
           'Authorization': 'Bearer ' + accessToken
         },

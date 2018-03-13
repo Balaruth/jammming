@@ -14,7 +14,7 @@ class Playlist extends React.Component {
       term: event.target.value
     });
   }
-  
+
   render() {
     return <div className="Playlist">
             <input defaultValue={'New Playlist'} onChange={this.handleNameChange}/>
